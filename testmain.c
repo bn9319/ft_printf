@@ -31,7 +31,7 @@ void        ft_putnbr_fd(int n)
         ft_putchar1_fd(n + '0');
 }
 
-int	ft_printf(const char *to_print, ...)
+/*int	ft_printf(const char *to_print, ...)
 {
 	va_list ap;
 	void	*s;
@@ -47,26 +47,25 @@ int	ft_printf(const char *to_print, ...)
 		else 
 			ft_putchar1_fd(to_print[i]);
 	}
-}
+	}*/
 
 
 int	ft_printf(const char *to_print, ...)
 {
 	va_list ap;
 	t_flags_conversions_int filled;
-	int d;
 	int i;
 	
 	i = 0;
 	va_start(ap, to_print);
-	d = va_arg(ap, int);
-	va_end(ap);
-	filled = ft_filler_int(&to_print[i + 1]);
-	ft_putnbr_fd(d);
-	while (filled.l_justify > 0)
+//	d = va_arg(ap, int);
+//	va_end(ap);
+	ft_filler_int(&to_print[i + 1], &filled, ap);
+	ft_putnbr_fd(filled.number);
+	while (filled.star_npoint > 0)
 	{
 		ft_putchar1_fd(' ');
-		filled.l_justify--;
+		filled.star_npoint--;
 	}
 	while (to_print[i] != 'd')
 		i++;
@@ -76,6 +75,7 @@ int	ft_printf(const char *to_print, ...)
 		ft_putchar1_fd(to_print[i]);
 		i++;
 	}
+	printf("length number || %d\n", filled.length_number);
 	return (0);
 	
 }
@@ -85,7 +85,7 @@ int	main(void)
 	int d;
 
 	d = 1200;
-	ft_printf("%0----20.100dhoi\n", d);
-	printf("%-20d    hoi\n", d);
+	ft_printf("%----*dhoi\n", 20, d);
+	printf("%-*d    hoi\n", 20, d);
 	return (0);
 }

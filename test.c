@@ -7,10 +7,11 @@ int	main(void)
 
 	d = 12;
 	s = "hello";
-	printf("%-*dhoi\n", 5, d);
-	printf("%d   hoi\n", d);
-	printf("%d     hoi\n", d);
-	printf("%%z");
+	printf("%05d\n", d);
+//	printf("%-*.*dhoi\n", 12, 5, d);
+//	printf("%d   hoi\n", d);
+//	printf("%d     hoi\n", d);
+//	printf("%%z");
 //	printf("- || %5*d hello\n", 5,  d);
 //	printf("0 || %d hello\n", d);
 //	printf("", d);
