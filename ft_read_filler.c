@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/12 14:26:08 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/13 19:09:24 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/15 20:04:16 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,20 @@ void	ft_set_to_zero(t_flags_conversions_int *filled)
 	filled->length_number = 0;
 }
 
-void	ft_read_filler(const char *to_print, va_list ap)
+int	ft_read_filler(const char *to_print, va_list ap)
 {
 	t_flags_conversions_int filled;
+	int	length_number;
 	
 	ft_set_to_zero(&filled);
 	ft_filler_int(to_print, &filled, ap);
-	if (filled.r_justify > filled.point && filled.point >= filled.length_number)
+	length_number = filled.length_number;
+	if (filled.point > filled.length_number && filled.r_justify > 0)
 		filled.r_justify = filled.r_justify - filled.point;
-	if (filled.l_justify > filled.point && filled.point >= filled.length_number)
+	if (filled.point >= filled.length_number && filled.l_justify > 0)
 		filled.l_justify = filled.l_justify - filled.point;
-	while ((filled.r_justify > 0  && filled.point > 0) \
-	|| (filled.r_justify > filled.length_number && filled.point == 0))
+	while ((filled.r_justify > 0  && filled.point > 0 && filled.point > filled.length_number) \
+	|| (filled.r_justify > filled.length_number && filled.point <= filled.length_number))
 	{
 		write(1, " ", 1);
 		filled.r_justify--;
@@ -79,9 +81,10 @@ void	ft_read_filler(const char *to_print, va_list ap)
 		filled.length_number++;
 	}
 	ft_putnbr_fd(filled.number);
-	while ((filled.l_justify > 0 && filled.point > 0) || (filled.l_justify > filled.length_number && filled.point == 0))
+	while ((filled.l_justify > 0 && filled.point > 0 && filled.point > length_number) || (filled.l_justify > length_number && filled.point <= length_number))
 	{
 		write(1, " ", 1);
 		filled.l_justify--;
 	}
+	return (filled.i);
 }

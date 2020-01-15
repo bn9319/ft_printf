@@ -10,13 +10,10 @@ int	ft_printf(const char *to_print, ...)
 	va_start(ap, to_print);
 	while (to_print[i])
 	{
+		if (to_print[i] != '%')
+			write(1, &to_print[i], 1);
 		if (to_print[i] == '%')
-		{
-			ft_read_filler(&to_print[i + 1], ap);
-			while (to_print[i - 1] != 'd')
-				i++;
-		}
-		write(1, &to_print[i], 1);
+			i += ft_read_filler(&to_print[i], ap);
 		i++;
 	}
 	va_end(ap);
