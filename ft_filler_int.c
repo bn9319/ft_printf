@@ -18,16 +18,13 @@ static int	ft_atoi(const char *tmp, int *i)
     long int            number;
     long int            negative;
 
-	(*i)++;
     number = 0;
     negative = 1;
-    while (tmp[*i] < '0' ||  tmp[*i] > '9')
+    if (tmp[*i] <= '0' ||  tmp[*i] > '9')
         (*i)++;
-    if (tmp[*i] == '-' || tmp[*i] == '+')
+      if (tmp[*i] == '-')
     {
-        if (tmp[*i] == '-')
-            negative = -1;
-        (*i)++;
+        return (0);
     }
     while (tmp[*i] >= '0' && tmp[*i] <= '9')
     {
@@ -38,7 +35,6 @@ static int	ft_atoi(const char *tmp, int *i)
             return (-1);
         (*i)++;
     }
-	printf("number = %d\n", number);
     return (number * negative);
 
 }
@@ -46,9 +42,9 @@ static int	ft_atoi(const char *tmp, int *i)
 static int	ft_find_number(const char *to_print, va_list ap, int *i)
 {
 	int number;
-	if (to_print[0] == '*')
+	if (to_print[*i] == '*' || to_print[*i + 1] == '*')
 		return (va_arg(ap, int));
-	number = ft_atoi(&to_print[0], i);
+	number = ft_atoi(to_print, i);
 	return (number);
 }
 
@@ -59,8 +55,8 @@ void	ft_length_numb(t_flags_conversions_int *filled)
 
 	count = 0;
 	number = filled->number;
-	if (number == 0)
-		count++;
+	if (number == 0 && filled->check == 0)
+	  count++;
 	while (number != 0)
 	{
 		number /= 10;
@@ -82,29 +78,33 @@ void	ft_filler_int(const char *to_print, t_flags_conversions_int *filled, va_lis
 	i = 0;
 	while (to_print[i] != 'd')
 	{
-		if (to_print[i] == '-')
-			filled->l_justify = ft_find_number(&to_print[i + 1], ap, &i);
+	  i++; 
+	  if ((to_print[1] == '*' && i == 1) || (to_print[1] > '0' && to_print[1] <= '9' && i == 1))
+	    filled->r_justify = ft_find_number(to_print, ap, &i);
 		if (to_print[i] == '0')
 		{
 			//als er een 0 in getal zit, dan ziet hij het als flag op bepaald punt -> i dus meesturen
-			filled->zero = ft_find_number(&to_print[i + 1], ap, &i);
-			printf("%d\n", filled->zero);
+			filled->zero = ft_find_number(to_print, ap, &i);
+			//	printf("%d\n", filled->zero);
 		}
+		if (to_print[i] == '-')
+		  filled->l_justify = ft_find_number(to_print, ap, &i);
 		if (to_print[i] == '.')
-			filled->point = ft_find_number(&to_print[i + 1], ap, &i);
-		if ((to_print[1] == '*' && i == 1) || (to_print[1] > '0' && to_print[1] <= '9' && i == 1))
-			filled->r_justify = ft_find_number(&to_print[i], ap, &i);
-		i++;
+		  {
+		    filled->point = 0;
+			filled->point = ft_find_number(to_print, ap, &i);
+		  }
 	}
-	printf("point: %d\n", filled->point);
-	printf("zero: %d\n", filled->zero);
-	printf("right: %d\n", filled->r_justify);
-	if (filled->point > 0 && filled->zero > 0)
+		if (filled->point > 0 && filled->zero > 0)
 	{
 		filled->r_justify = filled->zero;
 		filled->zero = 0;
 	}
 	filled->number = va_arg(ap, int);
+	if (filled->number ==  0 && filled->point >= 0)
+	  {
+	  filled->check = 1;
+	  }
 	ft_length_numb(filled);
 	filled->i = i;
 }

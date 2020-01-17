@@ -27,6 +27,7 @@ typedef struct	s_flags_conversions_int{
 	int number;
 	int length_number;
 	int i;
+  int check;
 }				t_flags_conversions_int;
 
 void ft_filler_int(const char *to_print, t_flags_conversions_int *filled, va_list ap);

@@ -45,11 +45,13 @@ void	ft_set_to_zero(t_flags_conversions_int *filled)
 	filled->l_justify = 0;
 	filled->r_justify = 0;
 	filled->zero = 0;
-	filled->point = 0;
+	filled->point = -1;
 	filled->star_npoint = 0;
 	filled->star_point = 0;
 	filled->number = 0;
 	filled->length_number = 0;
+	filled->check = 0;
+	filled->i = 0;
 }
 
 int	ft_read_filler(const char *to_print, va_list ap)
@@ -80,7 +82,8 @@ int	ft_read_filler(const char *to_print, va_list ap)
 		write(1, "0", 1);
 		filled.length_number++;
 	}
-	ft_putnbr_fd(filled.number);
+	if (filled.check == 0)
+	  ft_putnbr_fd(filled.number);
 	while ((filled.l_justify > 0 && filled.point > 0 && filled.point > length_number) || (filled.l_justify > length_number && filled.point <= length_number))
 	{
 		write(1, " ", 1);
