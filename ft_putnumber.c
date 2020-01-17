@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   ft_putnumber.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/17 16:38:56 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/17 20:20:23 by bnijland      ########   odam.nl         */
+/*   Created: 2020/01/17 19:37:04 by bnijland      #+#    #+#                 */
+/*   Updated: 2020/01/17 21:24:25 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *to_print, ...)
+void		ft_putnumber(int number)
 {
-	va_list ap;
-	int		i;
-
-	i = 0;
-	va_start(ap, to_print);
-	while (to_print[i])
+	if (number == -2147483648)
 	{
-		if (to_print[i] != '%')
-			write(1, &to_print[i], 1);
-		if (to_print[i] == '%')
-			i += ft_find_and_write_conversion(&to_print[i], ap);
-		i++;
+		ft_putchar('-');
+		ft_putchar('2');
+		ft_putnumber(147483648);
 	}
-	va_end(ap);
-	return (0);
+	if (number < 0 && number != -2147483648)
+	{
+		ft_putchar('-');
+		number *= -1;
+	}
+	if (number >= 10)
+	{
+		ft_putnumber(number / 10);
+		ft_putchar(number % 10 + 48);
+	}
+	if (number < 10 && number >= 0)
+		ft_putchar(number + 48);
 }

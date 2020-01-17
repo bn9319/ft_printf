@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   ft_length_number.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/17 16:38:56 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/17 20:20:23 by bnijland      ########   odam.nl         */
+/*   Created: 2020/01/17 18:14:21 by bnijland      #+#    #+#                 */
+/*   Updated: 2020/01/17 22:08:15 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *to_print, ...)
+void	ft_length_number(t_flags_conversions *filled)
 {
-	va_list ap;
-	int		i;
+	int number;
 
-	i = 0;
-	va_start(ap, to_print);
-	while (to_print[i])
+	number = filled->number;
+	if (filled->number == 0 && filled->check == 0)
+		filled->length++;
+	while (number != 0)
 	{
-		if (to_print[i] != '%')
-			write(1, &to_print[i], 1);
-		if (to_print[i] == '%')
-			i += ft_find_and_write_conversion(&to_print[i], ap);
-		i++;
+		number /= 10;
+		filled->length++;
 	}
-	va_end(ap);
-	return (0);
+	if (filled->number < 0)
+	{
+		filled->right--;
+		filled->left--;
+		filled->zero--;
+	}
 }

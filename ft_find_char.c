@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   ft_find_char.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/17 16:38:56 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/17 20:20:23 by bnijland      ########   odam.nl         */
+/*   Created: 2020/01/17 21:14:15 by bnijland      #+#    #+#                 */
+/*   Updated: 2020/01/17 21:41:03 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *to_print, ...)
+int	ft_find_char(const char *to_print, va_list ap, int j)
 {
-	va_list ap;
-	int		i;
+	t_flags_conversions filled;
 
-	i = 0;
-	va_start(ap, to_print);
-	while (to_print[i])
-	{
-		if (to_print[i] != '%')
-			write(1, &to_print[i], 1);
-		if (to_print[i] == '%')
-			i += ft_find_and_write_conversion(&to_print[i], ap);
-		i++;
-	}
-	va_end(ap);
-	return (0);
+	filled.conversion = to_print[j];
+	ft_set_to_zero(&filled);
+	ft_filler(to_print, &filled, ap);
+	filled.right--;
+	filled.left--;
+	filled.c = va_arg(ap, int);
+	ft_write_char(filled);
+	return (filled.i);
 }

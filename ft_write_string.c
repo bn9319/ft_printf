@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   ft_write_string.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/17 16:38:56 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/17 20:20:23 by bnijland      ########   odam.nl         */
+/*   Created: 2020/01/17 22:11:39 by bnijland      #+#    #+#                 */
+/*   Updated: 2020/01/18 00:18:56 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *to_print, ...)
+void	ft_write_string(t_flags_conversions filled, char *s, int length)
 {
-	va_list ap;
 	int		i;
 
 	i = 0;
-	va_start(ap, to_print);
-	while (to_print[i])
+	while ((filled.right > 0 && filled.point > filled.length) || (filled.right > filled.length && filled.point <= filled.length))
 	{
-		if (to_print[i] != '%')
-			write(1, &to_print[i], 1);
-		if (to_print[i] == '%')
-			i += ft_find_and_write_conversion(&to_print[i], ap);
+		write(1, " ", 1);
+		filled.right--;
+	}
+	while (length > 0)
+	{
+		write(1, &s[i], 1);
+		length--;
 		i++;
 	}
-	va_end(ap);
-	return (0);
+	while ((filled.left > 0 && filled.point > filled.length) || (filled.left > filled.length && filled.point <= filled.length))
+	{
+		write(1, " ", 1);
+		filled.left--;
+	}
 }

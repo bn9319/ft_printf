@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   ft_set_to_zero.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/17 16:38:56 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/17 20:20:23 by bnijland      ########   odam.nl         */
+/*   Created: 2020/01/17 18:17:21 by bnijland      #+#    #+#                 */
+/*   Updated: 2020/01/17 22:04:26 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *to_print, ...)
+void	ft_set_to_zero(t_flags_conversions *filled)
 {
-	va_list ap;
-	int		i;
-
-	i = 0;
-	va_start(ap, to_print);
-	while (to_print[i])
-	{
-		if (to_print[i] != '%')
-			write(1, &to_print[i], 1);
-		if (to_print[i] == '%')
-			i += ft_find_and_write_conversion(&to_print[i], ap);
-		i++;
-	}
-	va_end(ap);
-	return (0);
+	filled->left = 0;
+	filled->right = 0;
+	filled->zero = 0;
+	filled->point = -1;
+	filled->number = 0;
+	filled->length = 0;
+	filled->check = 0;
+	filled->i = 0;
+	filled->total = 0;
 }
