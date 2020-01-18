@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_write_char.c                                    :+:    :+:            */
+/*   ft_write_unsigned.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/17 21:22:30 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/18 00:47:36 by bnijland      ########   odam.nl         */
+/*   Created: 2020/01/18 20:36:35 by bnijland      #+#    #+#                 */
+/*   Updated: 2020/01/18 20:40:09 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_write_char(t_flags_conversions filled)
+void	ft_write_unsigned(t_flags_conversions filled, int length)
 {
-	while (filled.right > 0)
+	while ((filled.right > 0 && filled.point > filled.length) || \
+		   (filled.right > filled.length && filled.point <= filled.length))
 	{
 		write(1, " ", 1);
 		filled.right--;
 	}
-	ft_putchar(filled.c);
-	while (filled.left > 0)
+	while (filled.point > filled.length || filled.zero > filled.length)
+	{
+		write(1, "0", 1);
+		filled.length++;
+	}
+	if (filled.check == 0)
+		ft_putunsigned(filled.unumber);
+	while ((filled.left > 0 && filled.point > length) || \
+		   (filled.left > length && filled.point <= length))
 	{
 		write(1, " ", 1);
 		filled.left--;

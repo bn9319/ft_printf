@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_find_string.c                                   :+:    :+:            */
+/*   ft_find_unsigned.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/17 21:46:26 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/18 19:02:05 by bnijland      ########   odam.nl         */
+/*   Created: 2020/01/18 20:04:01 by bnijland      #+#    #+#                 */
+/*   Updated: 2020/01/18 20:45:09 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_find_string(const char *to_print, va_list ap, int j)
+int	ft_find_unsigned(const char *to_print, va_list ap, int j)
 {
-	t_flags_conversions	filled;
-	int					length;
-	char				*s;
+	t_flags_conversions filled;
 
 	filled.conversion = to_print[j];
 	ft_set_to_zero(&filled);
 	ft_filler(to_print, &filled, ap);
-	s = va_arg(ap, char *);
-	ft_strlen_s(&filled, s);
-	length = filled.length;
-	if (filled.point <= filled.length && filled.point != -1)
-		length = filled.point;
-	ft_write_string(filled, s, length);
+	if (filled.point > 0 && filled.zero > 0)
+	{
+		filled.right = filled.zero;
+		filled.zero = 0;
+	}
+	filled.unumber = va_arg(ap, unsigned int);
+	if (filled.unumber == 0 && filled.point >= 0)
+		filled.check = 1;
+	ft_length_unsigned(&filled);
+	if (filled.point > filled.length && filled.right > 0)
+		filled.right -= filled.point;
+	if (filled.point >= filled.length && filled.left > 0)
+		filled.left -= filled.point;
+	ft_write_unsigned(filled, filled.length);
 	return (filled.i);
+	
 }

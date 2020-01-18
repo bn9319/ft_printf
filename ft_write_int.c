@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 17:15:00 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/17 21:58:48 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/18 00:49:00 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,4 @@ void	ft_write_int(t_flags_conversions filled, int length)
 		write(1, " ", 1);
 		filled.left--;
 	}
-//	filled.total -= ;
 }

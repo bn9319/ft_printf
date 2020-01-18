@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 18:21:13 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/17 20:44:31 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/18 00:37:43 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static	int	ft_find_number(const char *to_print, va_list ap, int *i)
 	return (number);
 }
 
-void		ft_filler(const char *to_print, t_flags_conversions *filled, va_list ap)
+void		ft_filler(const char *to_print, t_flags_conversions *filled, \
+va_list ap)
 {
 	int i;
 

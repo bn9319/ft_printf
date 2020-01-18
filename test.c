@@ -1,7 +1,8 @@
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	main(void)
 {
-	ft_printf("%s", "hallo");
-	printf("%s\n", "hallo");
+//	ft_printf("%020.6s\n", NULL);
+	printf("%5%");
 }
