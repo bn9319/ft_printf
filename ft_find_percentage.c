@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_write_char.c                                    :+:    :+:            */
+/*   ft_find_percentage.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/17 21:22:30 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/19 14:00:02 by bnijland      ########   odam.nl         */
+/*   Created: 2020/01/19 13:45:52 by bnijland      #+#    #+#                 */
+/*   Updated: 2020/01/19 14:00:20 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_write_char(t_flags_conversions filled)
+int	ft_find_percentage(const char *to_print, va_list ap, int j)
 {
-	while (filled.right > 0)
-	{
-		write(1, " ", 1);
-		filled.right--;
-	}
-	if (filled.check == 1)
-	{
-		while (filled.zero > 1)
-		{
-			write(1, "0", 1);
-			filled.zero--;
-		}
-	}
-	ft_putchar(filled.c);
-	while (filled.left > 0)
-	{
-		write(1, " ", 1);
-		filled.left--;
-	}
+	t_flags_conversions filled;
+
+	filled.conversion = to_print[j];
+	ft_set_to_zero(&filled);
+	ft_filler(to_print, &filled, ap);
+	filled.right--;
+	filled.left--;
+	filled.c = '%';
+	filled.check = 1;
+	ft_write_char(filled);
+	return (filled.i);
 }

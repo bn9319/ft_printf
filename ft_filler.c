@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 18:21:13 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/18 00:37:43 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/19 14:18:31 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ va_list ap)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while (to_print[i] != filled->conversion)
 	{
-		i++;
+//		i++;
 		if ((to_print[1] == '*' && i == 1) || \
 (to_print[1] > 48 && to_print[1] <= 57 && i == 1))
 			filled->right = ft_find_number(to_print, ap, &i);

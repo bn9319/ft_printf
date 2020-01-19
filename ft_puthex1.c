@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_write_char.c                                    :+:    :+:            */
+/*   ft_puthex1.c                                        :+:    :+:           */
 /*                                                     +:+                    */
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/17 21:22:30 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/19 14:00:02 by bnijland      ########   odam.nl         */
+/*   Created: 2020/01/19 16:31:49 by bnijland      #+#    #+#                 */
+/*   Updated: 2020/01/19 16:53:45 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_write_char(t_flags_conversions filled)
+void	ft_puthex1(int number)
 {
-	while (filled.right > 0)
+	if (number >= 10)
 	{
-		write(1, " ", 1);
-		filled.right--;
+		ft_puthex1(number / 16);
+		ft_putchar(number % 16 + 87);
 	}
-	if (filled.check == 1)
+	if (number < 10)
 	{
-		while (filled.zero > 1)
-		{
-			write(1, "0", 1);
-			filled.zero--;
-		}
-	}
-	ft_putchar(filled.c);
-	while (filled.left > 0)
-	{
-		write(1, " ", 1);
-		filled.left--;
+		ft_putchar(number % 16 + 48);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/16 18:44:56 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/18 20:43:57 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/19 14:58:39 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int				ft_find_int(const char *to_print, va_list ap, int j);
 int				ft_find_char(const char *to_print, va_list ap, int j);
 int				ft_find_string(const char *to_print, va_list ap, int j);
 int				ft_find_unsigned(const char *to_print, va_list ap, int j);
+int				ft_find_percentage(const char *to_print, va_list ap, int j);
+int				ft_find_hexa(const char *to_print, va_list ap, int j);
 void			ft_set_to_zero(t_flags_conversions *filled);
 void			ft_filler(const char *to_print, t_flags_conversions *filled, \
 va_list ap);
