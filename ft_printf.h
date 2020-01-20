@@ -52,8 +52,10 @@ void			ft_write_char(t_flags_conversions filled);
 void			ft_write_string(t_flags_conversions filled, char *s, \
 int length);
 void			ft_write_unsigned(t_flags_conversions filled, int length);
+void                    ft_write_hexa(t_flags_conversions filled, int length);
 void			ft_putnumber(int number);
 void			ft_putunsigned(unsigned int unumber);
 void			ft_putchar(char c);
-
+void                   ft_puthex1(unsigned int number);
+void                   ft_puthex2(unsigned int number);
 #endif

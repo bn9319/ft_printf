@@ -32,7 +32,7 @@ int	ft_find_and_write_conversion(const char *to_print, va_list ap)
 	if (to_print[j] == 'u')
 		return (ft_find_unsigned(to_print, ap, j));
 	if (to_print[j] == 'x')
-		return (0);
+	  return (ft_find_hexa(to_print, ap, j));
 	if (to_print[j] == 'X')
 		return (0);
 	return (j);

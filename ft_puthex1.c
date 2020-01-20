@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
- 
+
 void	ft_puthex1(unsigned int number)
 {
 	if (number >= 10)
