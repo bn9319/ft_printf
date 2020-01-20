@@ -15,9 +15,12 @@ void	ft_puthex2(int number)
 	if (number >= 10)
 	{
 		ft_puthex2(number / 16);
-		ft_putchar(number % 16 + 48);
+		if (number % 16 < 10)
+		  ft_putchar(number % 16 + 48);
+		if (number % 16 > 10)
+		  ft_putchar(number % 16 + 55);
 	}
-	if (number < 10)
+	if (number < 10 && number > 0)
 	{
 		ft_putchar(number % 16 + 48);
 	}
