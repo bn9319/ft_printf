@@ -11,16 +11,17 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	ft_puthex1(int number)
+ 
+void	ft_puthex1(unsigned int number)
 {
 	if (number >= 10)
 	{
 		ft_puthex1(number / 16);
-		ft_putchar(number % 16 + 87);
+     		if (number % 16 < 10)
+		  ft_putchar(number % 16 + 48);
+		else if (number % 16 >= 10)
+		  ft_putchar(number % 16 + 87);
 	}
-	if (number < 10)
-	{
+	if (number < 10 && number > 0)
 		ft_putchar(number % 16 + 48);
-	}
 }

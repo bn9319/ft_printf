@@ -4,5 +4,5 @@
 int	main(void)
 {
 //	ft_printf("%-*%\n");
-	printf("%-*s", -18, "hallo\n");
+  printf("%x\n", 4294967295u);
 }
