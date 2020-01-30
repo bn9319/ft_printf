@@ -4,5 +4,6 @@
 int	main(void)
 {
 //	ft_printf("%-*%\n");
-  printf("%x\n", 15);
+	printf("%-*s", -18, "hallo\n");
+	printf("%x\n", -3);
 }

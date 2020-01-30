@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/16 18:44:56 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/19 14:58:39 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/24 17:26:37 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 # include <unistd.h>
 
 typedef struct	s_flags_conversions{
-	int				left;
-	int				right;
-	int				zero;
-	int				point;
-	int				number;
-	unsigned int	unumber;
-	int				length;
-	int				i;
-	int				check;
-	int				total;
-	char			conversion;
-	char			c;
-	char			*string;
+	int					left;
+	int					right;
+	int					zero;
+	int					point;
+	int					number;
+	unsigned long 		unumber;
+	int					length;
+	int					i;
+	int					check;
+	int					total;
+	char				conversion;
+	char				c;
+	char				*string;
 }				t_flags_conversions;
 
 int				ft_printf(const char *to_print, ...);
@@ -41,21 +41,24 @@ int				ft_find_string(const char *to_print, va_list ap, int j);
 int				ft_find_unsigned(const char *to_print, va_list ap, int j);
 int				ft_find_percentage(const char *to_print, va_list ap, int j);
 int				ft_find_hexa(const char *to_print, va_list ap, int j);
+int				ft_find_hexb(const char *to_print, va_list ap, int j);
 void			ft_set_to_zero(t_flags_conversions *filled);
 void			ft_filler(const char *to_print, t_flags_conversions *filled, \
 va_list ap);
 void			ft_length_number(t_flags_conversions *filled);
 void			ft_length_unsigned(t_flags_conversions *filled);
+void			ft_length_hex(t_flags_conversions *filled);
 void			ft_strlen_s(t_flags_conversions *filled, char *s);
 void			ft_write_int(t_flags_conversions filled, int length);
 void			ft_write_char(t_flags_conversions filled);
 void			ft_write_string(t_flags_conversions filled, char *s, \
 int length);
 void			ft_write_unsigned(t_flags_conversions filled, int length);
-void                    ft_write_hexa(t_flags_conversions filled, int length);
+void			ft_write_hexa(t_flags_conversions filled, int length);
+void			ft_write_hexb(t_flags_conversions filled, int length);
 void			ft_putnumber(int number);
-void			ft_putunsigned(unsigned int unumber);
+void			ft_putunsigned(unsigned long unumber);
 void			ft_putchar(char c);
-void                   ft_puthex1(unsigned int number);
-void                   ft_puthex2(unsigned int number);
+void			ft_puthex1(unsigned long number);
+void			ft_puthex2(unsigned long number);
 #endif

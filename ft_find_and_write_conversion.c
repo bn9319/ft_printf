@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 16:51:33 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/19 14:03:56 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/21 18:21:04 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	ft_find_and_write_conversion(const char *to_print, va_list ap)
 	if (to_print[j] == 's')
 		return (ft_find_string(to_print, ap, j));
 	if (to_print[j] == 'p')
-		return (0);
+		return (ft_find_hexa(to_print, ap, j));
 	if (to_print[j] == 'd' || to_print[j] == 'i')
 		return (ft_find_int(to_print, ap, j));
 	if (to_print[j] == 'u')
 		return (ft_find_unsigned(to_print, ap, j));
 	if (to_print[j] == 'x')
-	  return (ft_find_hexa(to_print, ap, j));
+		return (ft_find_hexa(to_print, ap, j));
 	if (to_print[j] == 'X')
-		return (0);
+		return (ft_find_hexb(to_print, ap, j));
 	return (j);
 }

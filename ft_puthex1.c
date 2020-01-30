@@ -6,13 +6,13 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 16:31:49 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/19 16:53:45 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/24 17:27:02 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_puthex1(unsigned int number)
+void	ft_puthex1(unsigned long number)
 {
 	if (number >= 10)
 	{
