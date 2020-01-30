@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 19:08:06 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/20 20:02:53 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/30 16:29:38 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_length_hex(t_flags_conversions *filled)
 {
-	unsigned int	number;
+	unsigned long	number;
 
 	number = filled->unumber;
 	if (number == 0 && filled->check == 0)

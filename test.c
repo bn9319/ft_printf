@@ -3,7 +3,12 @@
 
 int	main(void)
 {
-//	ft_printf("%-*%\n");
-	printf("%-*s", -18, "hallo\n");
-	printf("%x\n", -3);
+	int i;
+	int *p;
+
+	i = 12;
+	p = &i;
+
+	printf("%-*.*s", 7, 3, "yolo");
+	ft_printf("%-*.*s", 7, 3, "yolo");
 }

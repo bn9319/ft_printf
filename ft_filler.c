@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 18:21:13 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/19 14:18:31 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/30 21:45:08 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,16 @@ static	int	ft_find_number(const char *to_print, va_list ap, int *i)
 	int number;
 
 	if (to_print[*i] == '*' || to_print[*i + 1] == '*')
-		return (va_arg(ap, int));
+	{
+		number = va_arg(ap, int);
+		if (number < 0 && (to_print[*i] == '-' || to_print[*i] == '0' || to_print[*i] == '*'))
+			number *= -1;
+		else if (number < 0) 
+			number = 0;
+		if (to_print[*i + 1] == '*')
+			(*i)++;
+		return (number);
+	}
 	number = ft_atoi_printf(to_print, i);
 	return (number);
 }
@@ -47,7 +56,6 @@ va_list ap)
 	i = 1;
 	while (to_print[i] != filled->conversion)
 	{
-//		i++;
 		if ((to_print[1] == '*' && i == 1) || \
 (to_print[1] > 48 && to_print[1] <= 57 && i == 1))
 			filled->right = ft_find_number(to_print, ap, &i);
@@ -60,6 +68,8 @@ va_list ap)
 			filled->point = 0;
 			filled->point = ft_find_number(to_print, ap, &i);
 		}
+		if (to_print[i] == '*')
+			i++;
 	}
 	filled->i = i;
 }

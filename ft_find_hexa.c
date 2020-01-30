@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/21 18:03:35 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/30 15:44:52 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/01/30 16:25:35 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int ft_find_hexa(const char *to_print, va_list ap, int j)
       filled.right = filled.zero;
       filled.zero = 0;
     }
-  filled.unumber = va_arg(ap, unsigned int);
+  filled.unumber = va_arg(ap, unsigned long);
   if (filled.unumber == 0 && filled.point >= 0)
     filled.check = 1;
   ft_length_hex(&filled);
