@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/16 18:44:56 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/24 17:26:37 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/01 20:07:30 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ typedef struct	s_flags_conversions{
 }				t_flags_conversions;
 
 int				ft_printf(const char *to_print, ...);
-int				ft_find_and_write_conversion(const char *to_print, va_list ap);
-int				ft_find_int(const char *to_print, va_list ap, int j);
-int				ft_find_char(const char *to_print, va_list ap, int j);
-int				ft_find_string(const char *to_print, va_list ap, int j);
-int				ft_find_unsigned(const char *to_print, va_list ap, int j);
-int				ft_find_percentage(const char *to_print, va_list ap, int j);
-int				ft_find_hexa(const char *to_print, va_list ap, int j);
-int				ft_find_hexb(const char *to_print, va_list ap, int j);
+int				ft_find_and_write_conversion(const char *to_print, va_list ap, int *counter);
+int				ft_find_int(const char *to_print, va_list ap, int j, int *counter);
+int				ft_find_char(const char *to_print, va_list ap, int j, int *counter);
+int				ft_find_string(const char *to_print, va_list ap, int j, int *counter);
+int				ft_find_unsigned(const char *to_print, va_list ap, int j, int *counter);
+int				ft_find_percentage(const char *to_print, va_list ap, int j, int *counter);
+int				ft_find_hexa(const char *to_print, va_list ap, int j, int *counter);
+int				ft_find_hexb(const char *to_print, va_list ap, int j, int *counter);
 void			ft_set_to_zero(t_flags_conversions *filled);
 void			ft_filler(const char *to_print, t_flags_conversions *filled, \
 va_list ap);
@@ -49,13 +49,13 @@ void			ft_length_number(t_flags_conversions *filled);
 void			ft_length_unsigned(t_flags_conversions *filled);
 void			ft_length_hex(t_flags_conversions *filled);
 void			ft_strlen_s(t_flags_conversions *filled, char *s);
-void			ft_write_int(t_flags_conversions filled, int length);
-void			ft_write_char(t_flags_conversions filled);
-void			ft_write_string(t_flags_conversions filled, char *s, \
+void			ft_write_int(t_flags_conversions *filled, int length);
+void			ft_write_char(t_flags_conversions *filled);
+void			ft_write_string(t_flags_conversions *filled, char *s, \
 int length);
-void			ft_write_unsigned(t_flags_conversions filled, int length);
-void			ft_write_hexa(t_flags_conversions filled, int length);
-void			ft_write_hexb(t_flags_conversions filled, int length);
+void			ft_write_unsigned(t_flags_conversions *filled, int length);
+void			ft_write_hexa(t_flags_conversions *filled, int length);
+void			ft_write_hexb(t_flags_conversions *filled, int length);
 void			ft_putnumber(int number);
 void			ft_putunsigned(unsigned long unumber);
 void			ft_putchar(char c);

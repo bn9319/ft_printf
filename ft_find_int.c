@@ -6,13 +6,13 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 17:59:33 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/17 22:07:53 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/01 20:09:46 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_find_int(const char *to_print, va_list ap, int j)
+int	ft_find_int(const char *to_print, va_list ap, int j, int *counter)
 {
 	t_flags_conversions filled;
 
@@ -32,6 +32,10 @@ int	ft_find_int(const char *to_print, va_list ap, int j)
 		filled.right -= filled.point;
 	if (filled.point >= filled.length && filled.left > 0)
 		filled.left -= filled.point;
-	ft_write_int(filled, filled.length);
+	filled.total = filled.left + filled.right + filled.length;
+	if (filled.number < 0)
+		filled.total += 1;
+	ft_write_int(&filled, filled.length);
+	*counter += filled.total - filled.right - filled.left + filled.length;
 	return (filled.i);
 }

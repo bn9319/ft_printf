@@ -6,31 +6,32 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/21 18:03:24 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/21 18:07:36 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/01 19:33:52 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_write_hexb(t_flags_conversions filled, int length)
+void ft_write_hexb(t_flags_conversions *filled, int length)
 {
-  while ((filled.right > 0 && filled.point > filled.length) || (filled.right > filled.length && filled.point <= filled.length))
+  while ((filled->right > 0 && filled->point > filled->length) || (filled->right > filled->length && filled->point <= filled->length))
     {
       write(1, " ", 1);
-      filled.right--;
+      filled->right--;
     }
-  while (filled.point > filled.length || filled.zero > filled.length)
+  while (filled->point > filled->length || filled->zero > filled->length)
     {
       write(1, "0", 1);
-      filled.length++;
+      filled->length++;
     }
-  if (filled.unumber == 0 && filled.check == 0)
+  if (filled->unumber == 0 && filled->check == 0)
 	  write(1, "0", 1);
-  if (filled.check == 0)
-    ft_puthex2(filled.unumber);
-  while ((filled.left > 0 && filled.point > length) || (filled.left > length && filled.point <= length))
+  if (filled->check == 0)
+    ft_puthex2(filled->unumber);
+  while ((filled->left > 0 && filled->point >= length) || (filled->left > length && filled->point < length))
     {
       write(1, " ", 1);
-      filled.left--;
+      filled->left--;
     }
+  filled->length -= length;
 }

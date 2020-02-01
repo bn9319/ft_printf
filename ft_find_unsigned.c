@@ -6,13 +6,13 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/18 20:04:01 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/18 20:45:09 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/01 17:47:00 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_find_unsigned(const char *to_print, va_list ap, int j)
+int	ft_find_unsigned(const char *to_print, va_list ap, int j, int *counter)
 {
 	t_flags_conversions filled;
 
@@ -32,7 +32,8 @@ int	ft_find_unsigned(const char *to_print, va_list ap, int j)
 		filled.right -= filled.point;
 	if (filled.point >= filled.length && filled.left > 0)
 		filled.left -= filled.point;
-	ft_write_unsigned(filled, filled.length);
+	filled.total = filled.left + filled.right + filled.length;
+	ft_write_unsigned(&filled, filled.length);
+	*counter += filled.total - filled.right - filled.left + filled.length;
 	return (filled.i);
-	
 }

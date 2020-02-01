@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 22:11:39 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/19 13:42:38 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/01 16:22:28 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,31 @@ static	void	ft_putnstr(char *s, int length)
 	}
 }
 
-void			ft_write_string(t_flags_conversions filled, char *s, int length)
+void			ft_write_string(t_flags_conversions *filled, char *s, int length)
 {
 	int		i;
 
 	i = 0;
-	while ((filled.right > filled.length && (filled.point == -1 || \
-filled.point > length)) || (filled.right > filled.point && \
-filled.point >= 0 && filled.point <= length))
+	while ((filled->right > filled->length && (filled->point == -1 || \
+filled->point > length)) || (filled->right > filled->point && \
+filled->point >= 0 && filled->point <= length))
 	{
 		write(1, " ", 1);
-		filled.right--;
+		filled->right--;
 	}
-	while (length > 0 && filled.check == 0)
+	while (length > 0 && filled->check == 0)
 	{
 		write(1, &s[i], 1);
 		length--;
 		i++;
 	}
-	if (filled.check == 1)
+	if (filled->check == 1)
 		ft_putnstr("(null)", length);
-	while ((filled.left > filled.length && (filled.point > filled.length || \
-filled.point == -1)) || (filled.left > filled.point && filled.point >= 0 && \
-filled.point <= filled.length))
+	while ((filled->left > filled->length && (filled->point > filled->length || \
+filled->point == -1)) || (filled->left > filled->point && filled->point >= 0 && \
+filled->point <= filled->length))
 	{
 		write(1, " ", 1);
-		filled.left--;
+		filled->left--;
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 13:45:52 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/19 14:00:20 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/01 17:06:26 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_find_percentage(const char *to_print, va_list ap, int j)
+int	ft_find_percentage(const char *to_print, va_list ap, int j, int *counter)
 {
 	t_flags_conversions filled;
 
@@ -23,6 +23,8 @@ int	ft_find_percentage(const char *to_print, va_list ap, int j)
 	filled.left--;
 	filled.c = '%';
 	filled.check = 1;
-	ft_write_char(filled);
+	filled.total = filled.right + filled.left + filled.zero + 1;
+	ft_write_char(&filled);
+	*counter += filled.total - filled.right - filled.left - filled.zero;
 	return (filled.i);
 }
