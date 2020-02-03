@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 18:21:13 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/02/01 19:28:00 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/03 19:32:19 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static	int	ft_atoi_printf(const char *to_print, int *i)
 	return (number);
 }
 
-static	int	ft_find_number(const char *to_print, va_list ap, int *i, t_flags_conversions *filled)
+static	int	ft_find_number(const char *to_print, va_list ap, int *i, \
+t_flags_conversions *filled)
 {
 	int number;
 

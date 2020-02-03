@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 22:11:39 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/02/01 16:22:28 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/03 19:58:34 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static	void	ft_putnstr(char *s, int length)
 	}
 }
 
-void			ft_write_string(t_flags_conversions *filled, char *s, int length)
+void			ft_write_string(t_flags_conversions *filled, char *s, \
+int length)
 {
 	int		i;
 
@@ -45,9 +46,9 @@ filled->point >= 0 && filled->point <= length))
 	}
 	if (filled->check == 1)
 		ft_putnstr("(null)", length);
-	while ((filled->left > filled->length && (filled->point > filled->length || \
-filled->point == -1)) || (filled->left > filled->point && filled->point >= 0 && \
-filled->point <= filled->length))
+	while ((filled->left > filled->length && (filled->point > \
+filled->length || filled->point == -1)) || (filled->left > filled->point && \
+filled->point >= 0 && filled->point <= filled->length))
 	{
 		write(1, " ", 1);
 		filled->left--;

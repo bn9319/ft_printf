@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 18:14:21 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/02/01 20:19:40 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/03 19:41:11 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_length_number(t_flags_conversions *filled)
 {
-	 int number;
+	int number;
 
 	number = filled->number;
 	if (filled->number == 0 && filled->check == 0)
