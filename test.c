@@ -1,5 +1,6 @@
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 int	main(void)
 {
@@ -10,6 +11,11 @@ int	main(void)
 //	printf("neg2 %*.*s\n", -9, 4, "coucou");
 //	ft_printf("neg2 %*.*s\n", -9, 4, "coucou");
 //	ft_printf("%-3d|", 12);
-	ft_printf("%.20d\n", -2147483647);
-//	printf("%.s\n", 42);
+  float n = -12.12;
+  /*  ft_printf("niet chte:%.*d\n", -9, 0);
+  printf("de echte: %.*d\n", -9, 0);
+	ft_printf("%*.*d\n", 0, -5, 0);
+	printf("%*.*d\n", 0, -5, 0);
+	ft_printf("%c\n", 65);
+  */	printf("%+e\n", n);
 }

@@ -22,7 +22,7 @@ typedef struct	s_flags_conversions{
 	int					right;
 	int					zero;
 	int					point;
-	int					number;
+	long int					number;
 	unsigned long 		unumber;
 	int					length;
 	int					i;
@@ -56,7 +56,7 @@ int length);
 void			ft_write_unsigned(t_flags_conversions *filled, int length);
 void			ft_write_hexa(t_flags_conversions *filled, int length);
 void			ft_write_hexb(t_flags_conversions *filled, int length);
-void			ft_putnumber(int number);
+void			ft_putnumber(long int number);
 void			ft_putunsigned(unsigned long unumber);
 void			ft_putchar(char c);
 void			ft_puthex1(unsigned long number);

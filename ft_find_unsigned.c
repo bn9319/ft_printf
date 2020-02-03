@@ -19,7 +19,7 @@ int	ft_find_unsigned(const char *to_print, va_list ap, int j, int *counter)
 	filled.conversion = to_print[j];
 	ft_set_to_zero(&filled);
 	ft_filler(to_print, &filled, ap);
-	if (filled.point > 0 && filled.zero > 0)
+	if (filled.point >= 0 && filled.zero > 0)
 	{
 		filled.right = filled.zero;
 		filled.zero = 0;

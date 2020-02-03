@@ -43,8 +43,6 @@ static	int	ft_find_number(const char *to_print, va_list ap, int *i, t_flags_conv
 			filled->left = number * -1;
 			number = 0;
 		}
-		else if (number < 0 && filled->conversion != 's') 
-			number = 0;
 		else if (number < 0 && filled->conversion == 's')
 			number = -1;
 		if (to_print[*i + 1] == '*' || to_print[*i] == '*')

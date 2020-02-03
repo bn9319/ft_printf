@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void		ft_putnumber(int number)
+void		ft_putnumber(long int number)
 {
 	if (number == -2147483648)
 	{
