@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/17 16:51:33 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/02/03 19:33:19 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/13 17:07:46 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ to_print[j])
 	if (to_print[j] == 's')
 		return (ft_find_string(to_print, ap, j, counter));
 	if (to_print[j] == 'p')
-		return (ft_find_hexa(to_print, ap, j, counter));
+		return (ft_find_pointer(to_print, ap, j, counter));
 	if (to_print[j] == 'd' || to_print[j] == 'i')
 		return (ft_find_int(to_print, ap, j, counter));
 	if (to_print[j] == 'u')

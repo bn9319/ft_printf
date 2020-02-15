@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/19 16:50:56 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/02/03 19:45:42 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/13 16:48:48 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ void	ft_puthex2(unsigned long number)
 		ft_puthex2(number / 16);
 		if (number % 16 < 10)
 			ft_putchar(number % 16 + 48);
-		if (number % 16 >= 10)
+		else if (number % 16 >= 10)
 			ft_putchar(number % 16 + 55);
 	}
 	if (number < 10 && number > 0)
-	{
 		ft_putchar(number % 16 + 48);
-	}
 }

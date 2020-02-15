@@ -6,7 +6,7 @@
 /*   By: bnijland <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 19:08:06 by bnijland      #+#    #+#                 */
-/*   Updated: 2020/01/30 16:29:38 by bnijland      ########   odam.nl         */
+/*   Updated: 2020/02/13 17:11:17 by bnijland      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@ void	ft_length_hex(t_flags_conversions *filled)
 		number /= 16;
 		filled->length++;
 	}
+	if (filled->conversion == 'p')
+		filled->length += 2;
 }
